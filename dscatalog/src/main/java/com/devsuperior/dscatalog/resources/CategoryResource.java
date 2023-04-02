@@ -1,7 +1,6 @@
 package com.devsuperior.dscatalog.resources;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +29,8 @@ public class CategoryResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<CategoryDto>> findById(@PathVariable Long id) {
-        Optional<CategoryDto> dto = service.findById(id);
+    public ResponseEntity<CategoryDto> findById(@PathVariable Long id) {
+        CategoryDto dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
 
     }
