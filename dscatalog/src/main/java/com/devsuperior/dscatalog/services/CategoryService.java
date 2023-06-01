@@ -59,11 +59,9 @@ public class CategoryService {
             repository.deleteById(id);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Id not found " + id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity violation");
         }
-        catch (DataIntegrityViolationException e) {
-			throw new DatabaseException("Integrity violation");
-		}
-	}
-    
-
     }
+
+}
