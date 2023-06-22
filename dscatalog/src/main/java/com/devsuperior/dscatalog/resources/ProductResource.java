@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.devsuperior.dscatalog.dto.ProductDto;
+import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.services.ProductService;
 
 @RestController
@@ -26,10 +26,10 @@ import com.devsuperior.dscatalog.services.ProductService;
 public class ProductResource {
 
     @Autowired
-    ProductService service;
+    private ProductService service;
 
     @GetMapping
-    public ResponseEntity<Page<ProductDto>> findAll(
+    public ResponseEntity<Page<ProductDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
@@ -37,19 +37,19 @@ public class ProductResource {
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
-        Page<ProductDto> list = service.findAllPaged(pageRequest);
+        Page<ProductDTO> list = service.findAllPaged(pageRequest);
 
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProductDto> findById(@PathVariable Long id) {
-        ProductDto dto = service.findById(id);
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+        ProductDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> insert(@RequestBody ProductDto dto) {
+    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -57,7 +57,7 @@ public class ProductResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDto> update(@PathVariable Long id, @RequestBody ProductDto dto) {
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }

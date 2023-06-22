@@ -1,8 +1,5 @@
 package com.devsuperior.dscatalog.entity;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -13,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;

@@ -9,7 +9,7 @@ import java.util.Set;
 import com.devsuperior.dscatalog.entity.Category;
 import com.devsuperior.dscatalog.entity.Product;
 
-public class ProductDto implements Serializable {
+public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -19,12 +19,12 @@ public class ProductDto implements Serializable {
     private String imgUrl;
     private Instant date;
 
-    private List<CategoryDto> categories = new ArrayList<>();
+    private List<CategoryDTO> categories = new ArrayList<>();
 
-    public ProductDto() {
+    public ProductDTO() {
     }
 
-    public ProductDto(Long id, String name, String description, Double price, String imgUrl, Instant date) {
+    public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,7 +33,7 @@ public class ProductDto implements Serializable {
         this.date = date;
     }
 
-    public ProductDto(Product entity) {
+    public ProductDTO(Product entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
@@ -42,9 +42,9 @@ public class ProductDto implements Serializable {
         this.date = entity.getDate();
     }
 
-    public ProductDto(Product entity, Set<Category> categories) {
+    public ProductDTO(Product entity, Set<Category> categories) {
         this(entity);
-        categories.forEach(cat -> this.categories.add(new CategoryDto(cat)));
+        categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }
 
     public Long getId() {
@@ -95,12 +95,11 @@ public class ProductDto implements Serializable {
         this.date = date;
     }
 
-    public List<CategoryDto> getCategories() {
+    public List<CategoryDTO> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryDto> categories) {
+    public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
     }
-
 }
